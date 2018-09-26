@@ -1,0 +1,89 @@
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  background: #eee;
+}
+
+#container {
+  position: relative;
+  width: 1130px;
+  height: 630px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 35px 10px;
+  background-color: #bfcdcd;
+  border-radius: 4px;
+  box-shadow: 1px 2px 60px -2px #111;
+  overflow: visible;
+}
+
+header {
+  text-align: left;
+  font-family: helvetica, sans-serif;
+  margin-bottom: -35px;
+  margin-left: 0px;
+}
+
+#title {
+  font-size: 1.6em;
+}
+
+#description {
+  font-size: 0.9em;
+  margin-top: -10px;
+}
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: white;
+  font-family: verdana, sans-serif;
+  font-size: 0.7em;
+  padding: 5px 8px;
+  border-radius: 6px 0 0 0;
+}
+
+#tooltip {
+  position: absolute;
+  min-width: 180px;
+  padding: 5px 7px;
+  font-family: arial, sans-serif;
+  font-size: 0.8em;
+  background: #fff;
+  border-radius: 4px;
+  pointer-events: none;
+  line-height: 1.35;
+  white-space: nowrap;
+  transition: border-color 250ms ease-in;
+}
+table {
+  width: 100%;
+}
+table tr:first-child td{
+  text-align: left;
+}
+table td {
+  text-align: right;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+table th {
+  text-align: left;
+  font-weight: normal;
+}
+
+#legend {
+  shape-rendering: crispEdges;
+}
+
+#legend .tick {
+  shape-rendering: crispEdges;
+  font-family: arial, serif-sans;
+  font-size: 1.1em;
+  opacity: 0.9;
+}
