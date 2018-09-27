@@ -40,13 +40,20 @@ Promise.all([d3.json(urlGeo), d3.json(urlEdu)]).then(function(files) {
     .domain([6, 12, 18, 24, 30, 40, 50])
     .range(d3.schemeBrBG[numColors])
 
-// cross reference data files by id. find data entry and return key value if specified
+// cross reference data files by id. find data entry and return key value if specified 
 // otherwise return the matched data entry
+// implements memoization for better performance on repeated calls on the same id
+  var memoMap = new Map();
+
   function getValueOf(id, key) {
-    var found = eduData.filter(function(x) {
-      return x.fips === id
-    })
-    return !found[0] ? 'Error: data not found' : arguments[1] ? found[0][key] : found[0]
+    var found = "data not found";
+    if (memoMap.has(id)) {
+      found = memoMap.get(id);
+    } else {
+      found = eduData.filter(function (x) {return x.fips === id;})[0];
+      memoMap.set(id, found);
+    }
+    return arguments[1] ? found[key] : found;
   }
 
 // add representation for data points

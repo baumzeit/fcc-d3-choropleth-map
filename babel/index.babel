@@ -44,9 +44,18 @@ Promise.all([
   
 // cross reference data files by id. find data entry and return key value if specified 
 // otherwise return the matched data entry
+// implements memoization for better performance on repeated calls on the same id
+  let memoMap = new Map();
+  
   function getValueOf (id, key) {
-    const found = eduData.filter(x => x.fips === id);
-    return !found[0] ? "Error: data not found" : (arguments[1] ? found[0][key] : found[0])
+    let found = "data not found";
+    if (memoMap.has(id)) { 
+      found = memoMap.get(id);
+    } else {
+      found = eduData.filter(x => x.fips === id)[0];
+      memoMap.set(id, found);
+    }
+    return arguments[1] ? found[key] : found;
   }
   
 // add representation for data points
