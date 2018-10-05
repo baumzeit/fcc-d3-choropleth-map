@@ -75,7 +75,7 @@ Promise.all([d3.json(urlGeo), d3.json(urlEdu)]).then(function(files) {
     })
 
   //  add event listeners
-    .on('mouseover', function(d) {
+    .on('mousemove', function(d) {
       tooltip.style('opacity', 0.85).attr('data-education', getValueOf(d.id, 'bachelorsOrHigher'))
 
       var getTooltipLeftOffset = function getTooltipLeftOffset() {
@@ -149,18 +149,18 @@ Promise.all([d3.json(urlGeo), d3.json(urlEdu)]).then(function(files) {
       color.range().map(function(c) {
         var d = color.invertExtent(c)
         if (!d[0]) d[0] = y.domain()[0] // complete the boundary pair
-        if (!d[1]) d[1] = y.domain()[1] // for first and last threshold
+        if (!d[1]) d[1] = y.domain()[1] // for the first and last threshold values
         return d
       })
     )
     .enter()
     .insert('rect', '.tick')
     .attr('y', function(d) {
-      return y(d[0]) - getScaledHeight(d[0], d[1]) // lower boundary - height
+      return y(d[0]) - getScaledHeight(d[0], d[1])
     })
     .attr('height', function(d) {
       return getScaledHeight(d[0], d[1])
-    }) // height
+    })
     .attr('width', 16)
     .attr('fill', function(d) {
       return color(d[0])

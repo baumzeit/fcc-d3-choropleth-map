@@ -71,7 +71,7 @@ Promise.all([
     .style("fill", d => color(getValueOf(d.id, "bachelorsOrHigher")))
   
 //  add event listeners
-    .on("mouseover", d => {
+    .on("mousemove", d => {
       tooltip
         .style("opacity", 0.85)
         .attr("data-education", getValueOf(d.id, "bachelorsOrHigher"));
@@ -147,9 +147,9 @@ Promise.all([
     .enter()
     .insert("rect", ".tick")
     .attr("y", d => {
-      return y(d[0]) - getScaledHeight(d[0], d[1]) // lower boundary - height
+      return y(d[0]) - getScaledHeight(d[0], d[1])
     })
-    .attr("height", d => getScaledHeight(d[0], d[1])) // height
+    .attr("height", d => getScaledHeight(d[0], d[1]))
     .attr("width", 16)
     .attr("fill", d => color(d[0]))
     .attr("stroke", "black")
